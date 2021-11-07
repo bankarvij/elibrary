@@ -1,0 +1,47 @@
+<div class="modal-content">
+    <div class="row modal-header">
+        <div class="col-10 modal-title">
+            Search books
+        </div>
+        <div class="col-2">
+            <button type="button close-button" class="close" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <p>Enter title or author you want to search</p>
+        <form [formGroup]="form">
+            <input type="text" class="form-control" id="search" formControlName="search"/>
+            <button class="btn btn-primary margin-top" type="submit" (click)="search()">
+                <span class="glyphicon glyphicon-search">Search</span>
+            </button>
+        </form>
+        <div *ngIf="searchResults.length" class="margin-top">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Assigned to</th>
+                        <th scope="col"></th> 
+                        <th scope="col"></th>                 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of searchResults; index as i">
+                        <th scope="row"> {{ i + 1 }}</th>
+                        <td>{{ book.id}}</td>
+                        <td>{{ book.title}}</td>
+                        <td>{{ book.author}}</td>
+                        <td>{{ book.assignedTo}}</td>
+                        <td><button class="btn btn-secondary" (click)="update(i)">Update</button></td>
+                        <td><button class="btn btn-secondary" (click)="delete(i)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

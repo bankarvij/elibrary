@@ -1,0 +1,45 @@
+<h4 class="mt-5 mb-3">Add/Update Book</h4>
+<div class="margin-top">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-2">
+                <label>Book Title</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="title" formControlName="title">
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-2">
+                <label>Book Author</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="author" formControlName="author">
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-2">
+                <label>Serial #</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="serialNumber" formControlName="serialNumber">
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-2">
+                <label>Assigned to</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="assignedTo" formControlName="assignedTo">
+            </div>
+        </div>         
+        <div class="row mt-2">
+            <div *ngIf="book?.title" class="col-8">
+                <button type="submit" class="btn btn-primary">Update Book</button>
+            </div>
+            <div *ngIf="!book?.title" class="col-8">
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </div>
+        </div>    
+    </form>   
+</div>
