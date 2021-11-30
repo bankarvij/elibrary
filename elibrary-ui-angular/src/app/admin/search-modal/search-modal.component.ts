@@ -21,7 +21,7 @@ export class SearchModalComponent implements OnInit {
     updateEmit: EventEmitter<number> = new EventEmitter();
 
     @Output()
-    deleteEmit: EventEmitter<number> = new EventEmitter();
+    deleteEmit: EventEmitter<any> = new EventEmitter();
 
     constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal) {}
 
@@ -46,8 +46,8 @@ export class SearchModalComponent implements OnInit {
         this.closeModal();
     }
 
-    delete(index) {
-        this.deleteEmit.emit(index);
+    delete(book) {
+        this.deleteEmit.emit(book);
         this.closeModal();
     }
 

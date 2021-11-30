@@ -10,6 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AddBookComponent } from './admin/add-book/add-book.component';
 import { UserDashboardComponent } from './user/dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from 'src/app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { HelpComponent } from './help/help.component';
+import { UserSearchModalComponent } from './user/search-modal/user-search-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,17 +23,23 @@ import { UserDashboardComponent } from './user/dashboard/dashboard.component';
     DashboardComponent,
     SearchModalComponent,
     AddBookComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    LoginComponent,
+    NavBarComponent,
+    UserSearchModalComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
+    AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SearchModalComponent]
+  entryComponents: [SearchModalComponent, HelpComponent, UserSearchModalComponent]
 })
 export class AppModule { }

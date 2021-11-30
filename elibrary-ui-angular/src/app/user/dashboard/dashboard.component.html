@@ -10,12 +10,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let book of books; index as i">
+        <tr *ngFor="let book of assignedBooks; index as i">
             <th scope="row"> {{ i + 1 }}</th>
             <td>{{ book.id}}</td>
             <td>{{ book.title}}</td>
             <td>{{ book.author}}</td>
-            <td>{{ book.dueOn}}</td>
+            <td>{{ book.assignedDate}}</td>
         </tr>
     </tbody>
 </table>
@@ -33,12 +33,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let book of books; index as i">
-            <th scope="row"> {{ i + 1 }}</th>
-            <td>{{ book.id}}</td>
+        <tr *ngFor="let book of reservedBooks; index as i">
+            <th scope="row"> {{ book.id}}</th>
+            <td>{{ book.slNo}}</td>
             <td>{{ book.title}}</td>
             <td>{{ book.author}}</td>
-            <td><button class="btn btn-secondary" (click)="release(i)">Update</button></td>
+            <td><button class="btn btn-secondary" (click)="release(book)">Release</button></td>
         </tr>
     </tbody>
 </table>

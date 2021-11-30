@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, Output } from "@angular/core";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { BookService } from "src/app/services/book.service";
 import { SearchModalComponent } from "../search-modal/search-modal.component";
 
 @Component({
@@ -30,7 +31,7 @@ export class DashboardComponent implements OnChanges {
 
     modalRef: NgbModalRef;
 
-    constructor(@Inject(NgbModal) private ngbModal) {}
+    constructor(@Inject(NgbModal) private ngbModal, private bookService: BookService) {}
 
     ngOnChanges() {
         if (this.modalRef) {
@@ -47,13 +48,15 @@ export class DashboardComponent implements OnChanges {
         } ;
         this.modalRef = this.ngbModal.open(SearchModalComponent, config);
         this.modalRef.componentInstance.emitSearch.subscribe(value => {
-            this.searchEmit.emit(value);
+            this.bookService.searchBooks(value).subscribe(res => {
+                this.modalRef.componentInstance.searchResults = res;
+            })
         });
         this.modalRef.componentInstance.updateEmit.subscribe(value => {
             this.updateEmit.emit(value);
         });
         this.modalRef.componentInstance.deleteEmit.subscribe(value => {
-            this.deleteEmit.emit(value);
+            this.bookService.deleteBook(value.id);
         });
     }
 
