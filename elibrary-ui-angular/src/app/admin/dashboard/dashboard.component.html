@@ -1,0 +1,31 @@
+<h4 class="mt-3 mb-3">Book List</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Assigned to</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books; index as i">
+            <th scope="row"> {{ i + 1 }}</th>
+            <td>{{ book.id}}</td>
+            <td>{{ book.title}}</td>
+            <td>{{ book.author}}</td>
+            <td>{{ book.assignedTo}}</td>
+            <td><button class="btn btn-secondary" (click)="update(i)">Update</button></td>
+            <td><button class="btn btn-secondary" (click)="delete(i)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" type="submit" (click)="openModal()">
+    <span class="glyphicon glyphicon-search">Search</span>
+</button>
+<button class="margins btn btn-primary" type="submit" (click)="add()">
+    <span class="glyphicon glyphicon-search">Add Book</span>
+</button>

@@ -1,0 +1,48 @@
+<h4 class="mt-3 mb-3">Books allocated to me</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Due on</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of assignedBooks; index as i">
+            <th scope="row"> {{ i + 1 }}</th>
+            <td>{{ book.id}}</td>
+            <td>{{ book.title}}</td>
+            <td>{{ book.author}}</td>
+            <td>{{ book.assignedDate}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 class="mt-3 mb-3">Books reserved by me</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th>                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of reservedBooks; index as i">
+            <th scope="row"> {{ book.id}}</th>
+            <td>{{ book.slNo}}</td>
+            <td>{{ book.title}}</td>
+            <td>{{ book.author}}</td>
+            <td><button class="btn btn-secondary" (click)="release(book)">Release</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="btn btn-primary" type="submit" (click)="openModal()">
+    <span class="glyphicon glyphicon-search">Search</span>
+</button>
