@@ -22,7 +22,7 @@
                 <label>Serial #</label>
             </div>
             <div class="col-4">
-                <input type="text" name="serialNumber" formControlName="serialNumber">
+                <input type="text" name="slNo" formControlName="slNo">
             </div>
         </div>
         <div class="row mt-2">
@@ -34,11 +34,8 @@
             </div>
         </div>         
         <div class="row mt-2">
-            <div *ngIf="book?.title" class="col-8">
-                <button type="submit" class="btn btn-primary">Update Book</button>
-            </div>
-            <div *ngIf="!book?.title" class="col-8">
-                <button type="submit" class="btn btn-primary">Add Book</button>
+            <div class="col-8">
+                <button type="submit" class="btn btn-primary" (click)="addBook()">Add/Update Book</button>
             </div>
         </div>    
     </form>   

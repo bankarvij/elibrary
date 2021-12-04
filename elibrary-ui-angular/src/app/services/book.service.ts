@@ -33,4 +33,12 @@ export class BookService {
     deleteBook(id: number) {
         return this.http.post(environment.url + '/user/books/delete', {id: id });
     }
+
+    addBook(request: any) {
+        return this.http.post(environment.url + '/user/books/add', request);
+    }
+
+    fetchBooks() {
+        return this.http.get(environment.url + '/user/books/get');
+    }
 }
