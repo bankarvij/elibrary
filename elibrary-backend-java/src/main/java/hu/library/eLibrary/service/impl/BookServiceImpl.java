@@ -1,5 +1,6 @@
 package hu.library.eLibrary.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +53,30 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteBook(Long id) {
 		this.bookRepository.deleteBook(id);;
 		
 	}
+
+	@Override
+	public void addBook(Book book) {
+		book.setAssignedDate(LocalDate.now().toString());
+		this.bookRepository.save(book);		
+	}
+
+	@Override
+	public void updateBook(Book book) {		
+		this.bookRepository.save(book);
+		
+	}
+
+	@Override
+	public List<Book> fetchBooks() {
+		return this.bookRepository.findAll();
+		
+	}
+	
+	
 	
 }

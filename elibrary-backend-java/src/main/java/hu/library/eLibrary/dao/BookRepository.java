@@ -31,5 +31,6 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 	
 	@Modifying
 	@Query("delete Book b where b.id = :bookId")
-	void deleteBook(Long bookId);
+	void deleteBook(Long bookId);	
+		
 }

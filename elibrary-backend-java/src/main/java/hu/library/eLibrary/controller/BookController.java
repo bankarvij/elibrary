@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,5 +50,20 @@ public class BookController {
 	@PostMapping("/books/delete")
 	public void deleteBook(@RequestBody Book book) {
 		 bookService.deleteBook(book.getId());
+	}
+	
+	@PostMapping("/books/add")
+	public void addBook(@RequestBody Book book) {
+		 bookService.addBook(book);
+	}
+	
+	@PostMapping("/books/update")
+	public void updateBook(@RequestBody Book book) {
+		 bookService.updateBook(book);
+	}
+	
+	@GetMapping("/books/get")
+	public List<Book> fetchBooks() {
+		return bookService.fetchBooks();
 	}
 }
