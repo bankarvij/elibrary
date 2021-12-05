@@ -66,4 +66,9 @@ public class BookController {
 	public List<Book> fetchBooks() {
 		return bookService.fetchBooks();
 	}
+	
+	@PostMapping("/book/assignedTo")
+	public Boolean isValidUser(@RequestBody Book book) {
+		return this.bookService.isValidUserId(book.getAssignedTo());
+	}
 }

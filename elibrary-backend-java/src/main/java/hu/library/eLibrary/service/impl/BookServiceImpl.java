@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import hu.library.eLibrary.dao.BookRepository;
+import hu.library.eLibrary.dao.LoginRepository;
 import hu.library.eLibrary.model.Book;
 import hu.library.eLibrary.service.BookService;
 
@@ -16,6 +17,9 @@ public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private LoginRepository loginRepository;
 
 	@Override
 	public void assignBook(String bookId, String userID) {
@@ -76,7 +80,10 @@ public class BookServiceImpl implements BookService {
 		return this.bookRepository.findAll();
 		
 	}
-	
-	
+
+	@Override
+	public boolean isValidUserId(String userName) {
+		return this.loginRepository.findByUserName(userName) != null;
+	}
 	
 }

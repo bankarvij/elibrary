@@ -25,4 +25,6 @@ public interface BookService {
 	void updateBook(Book book);
 	
 	List<Book> fetchBooks();
+	
+	boolean isValidUserId(String userName);
 }
