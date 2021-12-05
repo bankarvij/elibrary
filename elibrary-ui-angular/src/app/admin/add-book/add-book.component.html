@@ -6,7 +6,12 @@
                 <label>Book Title</label>
             </div>
             <div class="col-4">
-                <input type="text" name="title" formControlName="title">
+                <input type="text" name="title" formControlName="title" maxlength="64">
+                <div *ngIf="title.invalid && (title.dirty || title.touched)" >
+                    <span class="error text-danger" *ngIf="title.errors.required">
+                        Book title is required
+                    </span>                            
+                </div>                
             </div>
         </div>
         <div class="row mt-2">
@@ -14,7 +19,12 @@
                 <label>Book Author</label>
             </div>
             <div class="col-4">
-                <input type="text" name="author" formControlName="author">
+                <input type="text" name="author" formControlName="author" maxlength="200">
+                <div *ngIf="author.invalid && (author.dirty || author.touched)" >
+                    <span class="error text-danger" *ngIf="author.errors.required">
+                        Book author is required
+                    </span>                            
+                </div>                 
             </div>
         </div>
         <div class="row mt-2">
@@ -22,7 +32,15 @@
                 <label>Serial #</label>
             </div>
             <div class="col-4">
-                <input type="text" name="slNo" formControlName="slNo">
+                <input type="text" name="slNo" formControlName="slNo" maxlength="10">
+                <div *ngIf="slNo.invalid && (slNo.dirty || slNo.touched)" >
+                    <span class="error text-danger" *ngIf="slNo.errors.required">
+                        Book seriol number is required
+                    </span>
+                    <span class="error text-danger" *ngIf="slNo.errors.pattern">
+                        Invalid characters
+                    </span>                                          
+                </div>                
             </div>
         </div>
         <div class="row mt-2">

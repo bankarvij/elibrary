@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, RequiredValidator, Validators } from "@angular/forms";
 import { BookService } from "src/app/services/book.service";
 
 @Component({
@@ -21,9 +21,9 @@ export class AddBookComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         this.form = this.formBuilder.group({            
-            title: [this.book?.title || ''],
-            author: [this.book?.author || ''],
-            slNo: [this.book?.slNo || ''],
+            title: [this.book?.title || '', Validators.required],
+            author: [this.book?.author || '', Validators.required],
+            slNo: [this.book?.slNo || '', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
             assignedTo: [this.book?.assignedTo || '']            
         });
     }
@@ -37,29 +37,48 @@ export class AddBookComponent implements OnInit, OnChanges {
         }
     }
 
-    addBook() {
-        let request: any;
-        if (this.book?.id) {
-            request  = {...this.form.value, id: this.book?.id};
-        } else {
-            request = this.form.value;
-        }        
-        this.bookService.addBook(request).subscribe(            
-            () => {
-                    const obj = {
-                        title: this.getControlValue('title'),
-                        author: this.getControlValue('author'),
-                        slNo: this.getControlValue('slNo'),
-                        assignedTo: this.getControlValue('assignedTo')
-                    };
-                    this.submitEmitter.emit(obj)
-                    this.form.reset();
+    addBook() {        
+
+        this.form.markAllAsTouched();
+
+        console.log(this.form);
+
+        if(this.form.valid) {
+            let request: any;
+            if (this.book?.id) {
+                request  = {...this.form.value, id: this.book?.id};
+            } else {
+                request = this.form.value;
             }        
-        );
+            this.bookService.addBook(request).subscribe(            
+                () => {
+                        const obj = {
+                            title: this.getControlValue('title'),
+                            author: this.getControlValue('author'),
+                            slNo: this.getControlValue('slNo'),
+                            assignedTo: this.getControlValue('assignedTo')
+                        };
+                        this.submitEmitter.emit(obj)
+                        this.form.reset();
+                }        
+            );
+        }
         
     }
 
     getControlValue(name: string) {
         return this.form.value[name];
+    }
+
+    get title() {
+        return this.form.get('title');
+    }
+
+    get author() {
+        return this.form.get('author');
+    }
+
+    get slNo() {
+        return this.form.get('slNo');
     }
 }
