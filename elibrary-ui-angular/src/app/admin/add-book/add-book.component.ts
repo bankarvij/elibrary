@@ -81,4 +81,20 @@ export class AddBookComponent implements OnInit, OnChanges {
     get slNo() {
         return this.form.get('slNo');
     }
+
+    get assignedTo() {
+        return this.form.get('assignedTo');
+    }
+
+    validateUser() {
+        if (this.assignedTo.value) {
+            this.bookService.isAssignedToValid({assignedTo: this.assignedTo.value}).subscribe(res => {
+                if (res) {
+                    this.assignedTo.setErrors(null);                    
+                } else {
+                    this.assignedTo.setErrors({userDoesnotExist: true});
+                }
+            });
+        }
+    }
 }

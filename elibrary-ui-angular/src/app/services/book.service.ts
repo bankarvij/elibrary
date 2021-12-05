@@ -41,4 +41,8 @@ export class BookService {
     fetchBooks() {
         return this.http.get(environment.url + '/user/books/get');
     }
+
+    isAssignedToValid(request: any) {
+        return this.http.post(environment.url + '/user/book/assignedTo', request);
+    }
 }
