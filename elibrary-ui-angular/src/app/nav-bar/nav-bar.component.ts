@@ -1,4 +1,5 @@
 import { Component, Inject } from "@angular/core";
+import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { HelpComponent } from "../help/help.component";
 
@@ -9,7 +10,7 @@ import { HelpComponent } from "../help/help.component";
 })
 export class NavBarComponent {
 
-    constructor(@Inject(NgbModal) private ngbModal) {}
+    constructor(@Inject(NgbModal) private ngbModal, private router: Router) {}
 
     openModal() {
         const config = {  
@@ -19,6 +20,11 @@ export class NavBarComponent {
         };
 
         this.ngbModal.open(HelpComponent, config);
+    }
+
+    logout() {
+        localStorage.clear();
+        this.router.navigateByUrl('');
     }
 
 }

@@ -69,8 +69,12 @@ export class DashboardComponent implements OnInit, OnChanges {
         this.selectedBook = this.books[index];        
     }
 
-    delete(index: number) {
-        this.bookService.deleteBook(index).subscribe(() => {
+    delete(book: any) {
+        if (book.assignedTo) {
+            window.alert("Cannot delete as this book is allocated to " + book.assignedTo);
+            return;
+        }
+        this.bookService.deleteBook(book.id).subscribe(() => {
             this.bookService.fetchBooks().subscribe(res => {
                 this.books = res;
                 this.toggle = false;          
