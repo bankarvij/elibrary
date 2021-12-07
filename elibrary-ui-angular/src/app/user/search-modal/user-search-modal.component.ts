@@ -20,6 +20,9 @@ export class UserSearchModalComponent implements OnInit {
     @Output()
     reserveEmit: EventEmitter<any> = new EventEmitter();
 
+    @Input()
+    isSearch: boolean;
+
 
     constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal) {}
 

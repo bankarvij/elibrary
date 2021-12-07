@@ -1,7 +1,7 @@
 import { Component, Inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { HelpComponent } from "../help/help.component";
+import { UserSearchModalComponent } from "../user/search-modal/user-search-modal.component";
 
 @Component({
     selector: 'nav-bar',
@@ -16,10 +16,12 @@ export class NavBarComponent {
         const config = {  
             size: 'lg',          
             backdrop: 'static',
-            keyboard: false
+            keyboard: false,
+            windowClass: 'custom-class'
         };
-
-        this.ngbModal.open(HelpComponent, config);
+        
+        const modalRef = this.ngbModal.open(UserSearchModalComponent, config);
+        modalRef.componentInstance.isSearch = false;
     }
 
     logout() {

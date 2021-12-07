@@ -49,6 +49,7 @@ export class UserDashboardComponent implements OnInit {
             windowClass: 'custom-class'
         } ;
         this.modalRef = this.ngbModal.open(UserSearchModalComponent, config);
+        this.modalRef.componentInstance.isSearch = true;
 
         this.modalRef.componentInstance.emitSearch.subscribe(value => {
             console.log(value);
