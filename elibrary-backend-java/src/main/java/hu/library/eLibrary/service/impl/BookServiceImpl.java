@@ -1,5 +1,6 @@
 package hu.library.eLibrary.service.impl;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,6 +30,13 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> fetchAssignedBooks(String assignedTo) {
+		List<Book> books = bookRepository.findByAssignedTo(assignedTo);
+		books.forEach(book -> {
+			if (book.getAssignedDate() != null && book.getAssignedDate().trim().length() > 0) {
+				LocalDate date = LocalDate.parse(book.getAssignedDate()).plusDays(7);
+				book.setAssignedDate(date.toString());
+			}
+		});
 		return bookRepository.findByAssignedTo(assignedTo);
 	}
 
