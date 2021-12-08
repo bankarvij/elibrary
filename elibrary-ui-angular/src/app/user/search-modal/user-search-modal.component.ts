@@ -47,4 +47,8 @@ export class UserSearchModalComponent implements OnInit {
         this.closeModal();
     }
 
+    get role() {
+        return localStorage.getItem('role');
+    }
+
 }

@@ -33,10 +33,10 @@ export class UserDashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.bookService.fetchAssignedBooks('user1234').subscribe(res => {
+        this.bookService.fetchAssignedBooks(localStorage.getItem('userName')).subscribe(res => {
             this.assignedBooks = res;
         });
-        this.bookService.fetchReservedBooks('user1234').subscribe(res => {
+        this.bookService.fetchReservedBooks(localStorage.getItem('userName')).subscribe(res => {
             this.reservedBooks = res;
         });        
     }

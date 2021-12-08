@@ -57,7 +57,26 @@
             </div>
         </div>
         <div class="modal-body">
-            <p>Help content</p>            
+            <div *ngIf="role === 'admin'">
+                <p>
+                    Add button to add new book to the inventory. <br>
+                    Update button to update the details of existing book in the inventory. Also used to assign book to an user <br>
+                    Delete button to remove the book from existing inventory if it is not assigned to any user. 
+                </p>
+                <div>
+                    For more questions, please reach our Customer care.
+                </div>
+            </div>
+            <div *ngIf="role === 'user'">
+                <p>
+                    Search to find a book. Search by author or title. <br>
+                    Reserve button to reserve the book. Book will be reserved for only 1 week. <br>
+                    Release the book.
+                </p>
+                <div>
+                    For more questions, please reach our Customer care.
+                </div>
+            </div>   
         </div>        
     </ng-container>
 
