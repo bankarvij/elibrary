@@ -33,10 +33,10 @@ export class UserDashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.bookService.fetchAssignedBooks('user1234').subscribe(res => {
+        this.bookService.fetchAssignedBooks(localStorage.getItem('userName')).subscribe(res => {
             this.assignedBooks = res;
         });
-        this.bookService.fetchReservedBooks('user1234').subscribe(res => {
+        this.bookService.fetchReservedBooks(localStorage.getItem('userName')).subscribe(res => {
             this.reservedBooks = res;
         });        
     }
@@ -49,6 +49,7 @@ export class UserDashboardComponent implements OnInit {
             windowClass: 'custom-class'
         } ;
         this.modalRef = this.ngbModal.open(UserSearchModalComponent, config);
+        this.modalRef.componentInstance.isSearch = true;
 
         this.modalRef.componentInstance.emitSearch.subscribe(value => {
             console.log(value);

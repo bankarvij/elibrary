@@ -19,7 +19,7 @@
             <td>{{ book.author}}</td>
             <td>{{ book.assignedTo}}</td>
             <td><button class="btn btn-secondary" (click)="update(i)">Update</button></td>
-            <td><button class="btn btn-secondary" (click)="delete(i)">Delete</button></td>
+            <td><button class="btn btn-secondary" (click)="delete(book)">Delete</button></td>
         </tr>
     </tbody>
 </table>
@@ -29,3 +29,4 @@
 <button class="margins btn btn-primary" type="submit" (click)="add()">
     <span class="glyphicon glyphicon-search">Add Book</span>
 </button>
+<elib-add-book-ui *ngIf="toggle" [book]="selectedBook" (submitEmitter)="updateList($event)"></elib-add-book-ui>

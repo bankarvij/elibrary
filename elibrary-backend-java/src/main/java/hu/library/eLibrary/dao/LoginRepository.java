@@ -6,4 +6,6 @@ import hu.library.eLibrary.model.User;
 
 public interface LoginRepository extends JpaRepository<User, Long>{
 	User findByUserNameAndPassword(String userName, String password);
+	
+	User findByUserName(String userName);
 }

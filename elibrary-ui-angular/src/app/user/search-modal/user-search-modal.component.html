@@ -1,0 +1,83 @@
+<div class="modal-content">
+    <ng-container *ngIf="isSearch">
+        <div class="row modal-header">
+            <div class="col-10 modal-title">
+                Search books
+            </div>
+            <div class="col-2">
+                <button type="button close-button" class="close" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <p>Enter title or author you want to search</p>
+            <form [formGroup]="form">
+                <input type="text" class="form-control" id="search" formControlName="search"/>
+                <button class="btn btn-primary margin-top" type="submit" (click)="search()">
+                    <span class="glyphicon glyphicon-search">Search</span>
+                </button>
+            </form>
+            <div *ngIf="searchResults.length" class="margin-top">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Is Available</th>
+                            <th scope="col"></th>                                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of searchResults; index as i">
+                            <th scope="row"> {{ i + 1 }}</th>
+                            <td>{{ book.id}}</td>
+                            <td>{{ book.title}}</td>
+                            <td>{{ book.author}}</td>
+                            <td>{{ book.assignedTo || book.reservedBy ? 'No' : 'Yes'}}</td>
+                            <td *ngIf="!(book.assignedTo || book.reservedBy )"><button class="btn btn-secondary" (click)="reserve(book)">Reserve</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!isSearch">
+        <div class="row modal-header">
+            <div class="col-10 modal-title">
+                eLibrary Help
+            </div>
+            <div class="col-2">
+                <button type="button close-button" class="close" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="role === 'admin'">
+                <p>
+                    Add button to add new book to the inventory. <br>
+                    Update button to update the details of existing book in the inventory. Also used to assign book to an user <br>
+                    Delete button to remove the book from existing inventory if it is not assigned to any user. 
+                </p>
+                <div>
+                    For more questions, please reach our Customer care.
+                </div>
+            </div>
+            <div *ngIf="role === 'user'">
+                <p>
+                    Search to find a book. Search by author or title. <br>
+                    Reserve button to reserve the book. Book will be reserved for only 1 week. <br>
+                    Release the book.
+                </p>
+                <div>
+                    For more questions, please reach our Customer care.
+                </div>
+            </div>   
+        </div>        
+    </ng-container>
+
+</div>

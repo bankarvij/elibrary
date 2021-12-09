@@ -19,4 +19,12 @@ public interface BookService {
 	void reserveBook(Long id, String userId);
 	
 	void deleteBook(Long id);
+	
+	void addBook(Book book);
+	
+	void updateBook(Book book);
+	
+	List<Book> fetchBooks();
+	
+	boolean isValidUserId(String userName);
 }
